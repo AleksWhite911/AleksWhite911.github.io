@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatoly Alekseev RTL and ASIC developer</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background-color: #f8fafc; 
+            color: #334155;
+            line-height: 1.5;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            color: #ffffff; font-size: 14px; padding: 16px 24px;
+            display: flex; justify-content: space-between; items-center;
+        }
+        .nav-logo { font-weight: 700; color: #f472b6; }
+        .nav-links a { margin-left: 24px; transition: color 0.2s; }
+        .nav-links a:hover { color: #f472b6; }
+
+        .header {
+            padding: 120px 16px 80px 16px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e3a8a 100%);
+            color: #ffffff; text-align: center;
+        }
+        .header-container { max-width: 768px; margin: 0 auto; display: flex; flex-direction: column; items-center; }
+        .avatar-box {
+            width: 128px; height: 128px; border-radius: 50%;
+            border: 4px solid rgba(244, 114, 182, 0.5);
+            overflow: hidden; margin: 0 auto 24px auto; background-color: #1e293b;
+        }
+        .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+        .header h1 { font-size: 36px; font-weight: 800; color: #f472b6; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .header p { font-size: 18px; color: #cbd5e1; font-weight: 500; margin-bottom: 24px; }
+        .btn-group { display: flex; gap: 16px; justify-content: center; }
+        .btn-outline {
+            padding: 8px 20px; border-radius: 9999px; border: 1px solid #f472b6;
+            color: #f472b6; font-weight: 500; font-size: 14px; transition: all 0.2s;
+        }
+        .btn-outline:hover { background-color: #f472b6; color: #ffffff; }
+        .btn-primary {
+            padding: 8px 20px; border-radius: 9999px; background-color: #f472b6;
+            color: #ffffff; font-weight: 500; font-size: 14px; transition: background-color 0.2s;
+        }
+        .btn-primary:hover { background-color: #db2777; }
+
+        .section { padding: 64px 16px; max-width: 1024px; margin: 0 auto; }
+        .section-title { font-size: 24px; font-weight: 700; text-align: center; color: #1e293b; margin-bottom: 8px; }
+        .section-subtitle { text-align: center; color: #94a3b8; font-size: 14px; margin-bottom: 40px; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .card {
+            background-color: #ffffff; padding: 24px; border-radius: 16px;
+            border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .badge {
+            display: inline-block; font-size: 12px; font-weight: 600;
+            padding: 4px 12px; background-color: #fdf2f8; color: #db2777;
+            border-radius: 9999px; margin-bottom: 12px;
+        }
+        .card p { font-size: 14px; color: #64748b; line-height: 1.6; }
+
+        /* О себе */
+        .about-text { max-width: 768px; margin: 0 auto; text-align: center; color: #475569; font-size: 16px; line-height: 1.7; }
+
+        /* Технический фокус */
+        .bg-gray-section { background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .focus-card { background-color: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .focus-card h3 { font-size: 14px; font-weight: 700; color: #2563eb; margin-bottom: 8px; }
+        .focus-card p { font-size: 12px; color: #94a3b8; }
+
+        /* Образование */
+        .education-list { max-width: 896px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+        .edu-item {
+            background-color: #ffffff; padding: 24px; border-radius: 16px;
+            border: 1px solid #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .edu-title { font-size: 16px; font-weight: 700; color: #1e293b; }
+        .edu-spec { font-size: 14px; color: #db2777; font-weight: 500; margin-top: 4px; }
+        .edu-gpa { font-size: 12px; color: #94a3b8; margin-top: 8px; }
+        .edu-date { font-size: 12px; color: #94a3b8; background-color: #f8fafc; padding: 4px 12px; border-radius: 9999px; white-space: nowrap; }
+
+        /* Подвал */
+        .footer { background-color: #0f172a; color: #94a3b8; font-size: 12px; padding: 48px 24px 24px 24px; border-top: 1px solid #1e293b; }
+        .footer-grid { max-width: 1024px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
+        .footer-h4 { color: #ffffff; font-weight: 600; margin-bottom: 12px; font-size: 14px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a:hover { color: #ffffff; }
+        .footer-bottom { text-align: center; margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-logo">Anatoly Alekseev</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="experience.html">Experience</a>
+            <a href="projects.html">Projects</a>
+            <a href="#education">Education</a>
+        </div>
+    </nav>
+
+    <header id="home" class="header">
+        <div class="header-container">
+            <div class="avatar-box">
+                <!-- Временная заглушка для фото. Замените на свое, когда загрузите на GitHub -->
+                <img src="https://unsplash.com" alt="Фото профиля">
+            </div>
+            <h1>Anatoly Alekseev / RenAshbell</h1>
+            <p>RTL designer and C developer</p>
+            <div class="btn-group">
+                <a href="#about" class="btn-outline">About me</a>
+                <a href="contact.html" class="btn-primary">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">Guiding Principles</h2>
+        <p class="section-subtitle">What drives my academic, professional, and personal growth</p>
+        
+        <div class="grid-3">
+            <div class="card">
+                <span class="badge">Curiosity</span>
+                <p>Asking critical questions early on, seeking engineering mentors, and actively sharing hard-gained system logic with the team.</p>
+            </div>
+            <div class="card">
+                <span class="badge">Execution</span>
+                <p>Building real-world digital hardware models side-by-side with cross-functional cohorts, valuing iteration and closure.</p>
+            </div>
+            <div class="card">
+                <span class="badge">Learning</span>
+                <p>Continuously broadening my scope through specialized technical tracks, structural peer feedback, and deep RTL testing.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section" style="padding-top: 80px; margin-top: 40px;">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-text" style="max-w: 800px; margin: 0 auto; text-align: center;">
+            I am an RTL / FPGA Engineer with 6+ years of professional experience in digital hardware design. 
+            I hold a Master's degree with honors in Microelectronics and Nanoelectronics. My expertise spans Verilog/SystemVerilog RTL development, 
+            RISC-V architecture, SoC integration (Zynq-7000, Kintex US), and high-speed interfaces. I focus on designing efficient hardware solutions, 
+            handling clock-domain crossings (CDC), and performing comprehensive functional verification.
+        </p>
+    </section>
+
+    <div id="focus" class="bg-gray-section" style="padding-top: 80px; padding-bottom: 64px;">
+        <section class="section">
+            <h2 class="section-title" style="margin-bottom: 40px;">Technical Focus</h2>
+            <div class="grid-4">
+                
+                <!-- Card 1: HDL / RTL Design -->
+                <div class="focus-card" style="flex-direction: column; align-items: stretch; gap: 12px; transition: all 0.3s ease; cursor: default;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)'; this.style.borderColor='#f1f5f9';">
+                 <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="focus-title" style="color: #2563eb; font-weight: 700; font-size: 15px; margin-bottom: 8px;">HDL / RTL Design</div>
+                </div>
+                <div style="font-size: 13px; color: #64748b;">
+                        Expertise in Verilog HDL and SystemVerilog. Designing digital arbitrary-waveform modulators, 
+                        Pulse Train generation modules, and DDS algorithms from scratch.
+                </div>
+                </div>
+
+                <div class="focus-card" style="flex-direction: column; align-items: stretch; gap: 12px; transition: all 0.3s ease; cursor: default;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)'; this.style.borderColor='#f1f5f9';">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="focus-title" style="color: #2563eb; font-weight: 700; font-size: 15px; margin-bottom: 8px;">Architecture SoC</div>
+                </div>
+                <div style="font-size: 13px; color: #64748b;">
+                        Deep understanding of RISC-V core development, SoC architecture, and AXI4/AXI4-Lite interconnects. 
+                        Experienced in HW/SW interaction on Zynq-7000 platforms.
+                </div>
+                </div>
+                
+                <div class="focus-card" style="flex-direction: column; align-items: stretch; gap: 12px; transition: all 0.3s ease; cursor: default;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)'; this.style.borderColor='#f1f5f9';">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="focus-title" style="color: #2563eb; font-weight: 700; font-size: 15px; margin-bottom: 8px;">High-Speed Interfaces</div>
+                </div>
+                <div style="font-size: 13px; color: #64748b;">
+                        Hands-on integration of JESD204B/C, PCIe/XDMA, DDR4 burst transactions, 
+                        and DVI video controllers.
+                </div>
+                </div>
+
+                <div class="focus-card" style="flex-direction: column; align-items: stretch; gap: 12px; transition: all 0.3s ease; cursor: default;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)'; this.style.borderColor='#f1f5f9';">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="focus-title" style="color: #2563eb; font-weight: 700; font-size: 15px; margin-bottom: 8px;">Design & Verification</div>
+                </div>
+                <div style="font-size: 13px; color: #64748b;">
+                        Advanced CDC analysis, timing constraints/closure, pipelining critical high-frequency paths, 
+                        and functional simulation in QuestaSim, and GtkWave
+                </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+ <section id="education" class="section">
+        <h2 class="section-title" style="margin-bottom: 40px ; color: #ff4081">Education</h2>
+        <div class="education-list">
+            
+            <div class="edu-item" style="flex-direction: column; align-items: stretch; gap: 12px; transition: all 0.3s ease; cursor: default;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)'; this.style.borderColor='#f1f5f9';">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="edu-title" style="font-size: 18px;">Saratov State University named after N.G.Chernyshevsky</div>
+                    <span class="edu-date">Sep 2025 - Present</span>
+                </div>
+                <div style="font-size: 14px; color: #475569;">
+                    Ph.D. - Micro- and Nanoelectronics, Diagnostics of Nano and Biomedical Systems
+                </div>
+            </div>
+
+            <div class="edu-item" style="flex-direction: column; align-items: stretch; gap: 12px; transition: all 0.3s ease; cursor: default;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)'; this.style.borderColor='#f1f5f9';">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="edu-title" style="font-size: 18px;">Saratov State University named after N.G.Chernyshevsky</div>
+                    <span class="edu-date">Sep 2023 - Aug 2025 </span>
+                </div>
+                <div style="font-size: 14px; color: #475569;">
+                    M.Sc.- Micro- and Nanoelectronics, Diagnostics of Nano and Biomedical Systems
+                </div>
+                <div style="font-size: 14px; font-weight: 700; color: #db2777;">
+                    CGPA: 3.83 / 4.0
+                </div>
+                <div style="margin-top: 0px;">
+                    <a href="https://drive.google.com/file/d/1TQ6C7m3oonYmogf2GJDOfSN_b3AKPYlM/view?usp=sharing" style="font-size: 13px; color: #2563eb; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">View Transcript →</a>
+                </div>
+
+                <div style="margin-top: 0px;">
+                    <a href="https://drive.google.com/file/d/1-SquAgIWIS5fJ3KF4ZwT0g6dxuih5o_V/view?usp=sharingg" style="font-size: 13px; color: #2563eb; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">View Original →</a>
+                </div>                
+            </div>
+
+            <div class="edu-item" style="flex-direction: column; align-items: stretch; gap: 12px; transition: all 0.3s ease; cursor: default;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.05)'; this.style.borderColor='#f1f5f9';">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="edu-title" style="font-size: 18px;">Saratov State University named after N.G.Chernyshevsky</div>
+                    <span class="edu-date">Sep 2016 - Aug 2020 </span>
+                </div>
+                <div style="font-size: 14px; color: #475569;">
+                    B.Sc.- Micro- and Nanoelectronics, Diagnostics of Nano and Biomedical Systems
+                </div>
+                <div style="font-size: 14px; font-weight: 700; color: #2739db;">
+                    CGPA: 3.97 / 4.0
+                </div>
+                <div style="margin-top: 8px;">
+                    <a href="#" style="font-size: 13px; color: #2563eb; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">View Transcript →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="background-color: #111827; padding: 40px 16px 30px 16px; margin-top: auto;">
+        <div style="max-width: 1024px; margin: 0 auto;">
+            <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 24px;">
+            <div style="text-align: center; color: #9ca3af; font-size: 13px; font-weight: 400; letter-spacing: 0.3px;">
+                © 2026 Anatoly Alekseev. All rights reserved.
+            </div>
+        </div>
+    </footer>

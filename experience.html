@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience | Anatoly Alekseev</title>
+    <style>
+        /* Base Reset and Layout */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+        background-color: #f1f5f9; 
+        color: #334155;
+        line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navigation Bar */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            color: #ffffff; font-size: 14px; padding: 16px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo { font-weight: 700; color: #f472b6; }
+        .nav-links a { margin-left: 24px; transition: color 0.2s; }
+        .nav-links a:hover { color: #f472b6; }
+
+        /* Page Header */
+        .header {
+            padding: 120px 16px 40px 16px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e3a8a 100%);
+            color: #ffffff; text-align: center;
+        }
+        .header h1 { font-size: 32px; font-weight: 800; color: #f472b6; margin-bottom: 8px; }
+
+        /* Experience Container */
+        .container { max-width: 896px; margin: 40px auto; padding: 0 16px; display: flex; flex-direction: column; gap: 24px; }
+
+        /* Experience Card */
+        .exp-card {
+            background-color: #ffffff; padding: 32px; border-radius: 16px;
+            border: 1px solid #f1f5f9; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03), 0 2px 4px -1px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+        .exp-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+
+        /* Top Header inside Card */
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .role-title { font-size: 20px; font-weight: 700; color: #1e293b; }
+        .company-name { font-size: 15px; font-weight: 600; color: #2563eb; margin-bottom: 12px; }
+        .exp-date { font-size: 13px; color: #94a3b8; font-weight: 500; }
+        .exp-desc { font-size: 14px; color: #475569; margin-bottom: 20px; }
+
+        /* Section Headings inside Card */
+        .sub-title { font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Tech Badges Container */
+        .tech-container { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+        .tech-badge { font-size: 12px; font-weight: 600; padding: 6px 14px; background-color: #eff6ff; color: #1d4ed8; border-radius: 6px; }
+
+        /* Responsibilities List */
+        .resp-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .resp-list li { position: relative; padding-left: 24px; font-size: 14px; color: #475569; }
+        /* Pink dots matching the layout */
+        .resp-list li::before {
+            content: ""; position: absolute; left: 4px; top: 8px;
+            width: 8px; height: 8px; background-color: #f472b6; border-radius: 50%;
+        }
+
+        /* Back Button */
+        .btn-back {
+            display: inline-block; align-self: center; margin-top: 20px; padding: 10px 24px; border-radius: 9999px;
+            border: 1px solid #f472b6; color: #f472b6; font-weight: 600; font-size: 14px; transition: all 0.2s;
+        }
+        .btn-back:hover { background-color: #f472b6; color: #ffffff; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-logo">Anatoly Alekseev</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#focus">Focus</a>
+            <a href="index.html#education">Education</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>Work Experience</h1>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+
+        <!-- Job 1: Mig Trading -->
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <h2 class="role-title">Lead Software Engineer / RTL Engineer</h2>
+                    <div class="company-name">Mig Trading · Saratov, Russia</div>
+                </div>
+                <span class="exp-date">Apr 2025 - Present</span>
+            </div>
+            <p class="exp-desc">RTL design engineering, high-speed AXI systems layout, and digital hardware modulators architecture design.</p>
+            
+            <h3 class="sub-title">Technologies</h3>
+            <div class="tech-container">
+                <span class="tech-badge">Verilog</span>
+                <span class="tech-badge">SystemVerilog</span>
+                <span class="tech-badge">AXI4</span>
+                <span class="tech-badge">DDR4</span>
+                <span class="tech-badge">Tcl / Bash</span>
+                <span class="tech-badge">QuestaSim</span>
+                <span class="tech-badge">Git</span>
+                <span class="tech-badge">Matlab</span>
+            </div>
+
+            <h3 class="sub-title">Responsibilities</h3>
+            <ul class="resp-list">
+                <li>Developed an RTL module for data transmission over DVI, including a boot animation during control-module startup.</li>
+                <li>Implemented DDR4 data readout over AXI4 using burst transactions.</li>
+                <li>Designed and debugged an RTL Pulse Train generation module achieving zero-latency output using LUTRAM.</li>
+                <li>Designed an AXI4-Lite to AXI4-Stream data converter for loading a FIFO used by a QSPI transmission interface.</li>
+                <li>Designed a 4× interpolation filter based on a raised-cosine filter to achieve low EVM in vector modulation, below 2%.</li>
+                <li>Developed Tcl and Bash scripts to automate the Vivado project build, synthesis, and implementation flow.</li>
+                <li>Prepared comprehensive RTL technical documentation covering module architecture, constraints, and FPGA layout resource utilization.</li>
+
+
+
+
+            </ul>
+        </div>
+
+        <!-- Job 2: Almaz-Fazotron -->
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <h2 class="role-title">Lead Software Engineer / RTL Engineer</h2>
+                    <div class="company-name">Almaz-Fazotron Research and Production Center · Saratov, Russia</div>
+                </div>
+                <span class="exp-date">Apr 2022 - Apr 2025</span>
+            </div>
+            <p class="exp-desc">RTL IP-cores infrastructure deployment, SoC hardware/software co-design, and high-frequency paths debugging.</p>
+            
+            <h3 class="sub-title">Technologies</h3>
+            <div class="tech-container">
+                <span class="tech-badge">Verilog</span>
+                <span class="tech-badge">SystemVerilog</span>
+                <span class="tech-badge">AXI4-Lite</span>
+                <span class="tech-badge">JESD204B</span>
+                <span class="tech-badge">PCIE/XDMA</span>
+                <span class="tech-badge">QuestaSim</span>
+                <span class="tech-badge">Git</span>
+            </div>
+
+            <h3 class="sub-title">Responsibilities</h3>
+            <ul class="resp-list">
+                <li>Developed RTL modules for controlling high-speed DACs via JESD204B and PCIe/XDMA protocols.</li>
+                <li>Integrated custom RTL designs with the processing system of the Xilinx Zynq-7000 SoC.</li>
+                <li>Analyzed timing violations, developed clock constraints, and resolved clock-domain crossing (CDC) vectors safely.</li>
+                <li>Performed exhaustive block-level functional verification and testbenching using QuestaSim.</li>
+            </ul>
+        </div>
+
+        <!-- Job 3: NPF Mossar -->
+        <div class="exp-card">
+            <div class="exp-header">
+                <div>
+                    <h2 class="role-title">Process Engineer</h2>
+                    <div class="company-name">NPF Mossar · Marks, Russia</div>
+                </div>
+                <span class="exp-date">Jul 2020 - Apr 2022</span>
+            </div>
+            <p class="exp-desc">Automation tools setup, embedded firmware optimization, and hardware product lifecycle support.</p>
+            
+            <h3 class="sub-title">Technologies</h3>
+            <div class="tech-container">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">MSP430 SoC</span>
+                <span class="tech-badge">Hardware Testing</span>
+            </div>
+
+            <h3 class="sub-title">Responsibilities</h3>
+            <ul class="resp-list">
+                <li>Developed and modified electrical test equipment for verification and calibration of telemetry electricity meters.</li>
+                <li>Modified low-level software for commercial meters based on the TI MSP430 SoC.</li>
+                <li>Developed internal service software in Python and PostgreSQL to automate equipment maintenance pipelines.</li>
+            </ul>
+        </div>
+
+        <!-- BACK TO HOME BUTTON -->
+        <a href="index.html" class="btn-back">← Back to Portfolio</a>
+
+    </main>
+
+</body>
+</html>

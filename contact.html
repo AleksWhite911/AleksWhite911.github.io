@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Anatoly Alekseev</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+        a { text-decoration: none; }
+
+        /* Навигационная панель */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            color: #ffffff; font-size: 14px; padding: 16px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo { font-weight: 700; color: #f472b6; }
+        .nav-links a { margin-left: 24px; transition: color 0.2s; text-shadow: none; }
+        .nav-links a:hover { color: #f472b6; }
+
+        /* Заголовок секции по центру */
+        .header {
+            padding: 140px 16px 20px 16px;
+            text-align: center;
+        }
+        .header h1 { 
+            font-size: 32px; 
+            font-weight: 700; 
+            color: #b73e75; /* Розово-пурпурный цвет заголовка из макета */
+            letter-spacing: -0.5px;
+        }
+
+        /* Двухколоночная сетка для карточек */
+        .container { 
+            max-width: 800px; 
+            margin: 20px auto; 
+            padding: 0 16px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 24px; 
+        }
+
+        /* Стилизация карточек в точности как на скриншоте */
+        .contact-card {
+            background-color: #ffffff; 
+            padding: 36px 24px; 
+            border-radius: 14px;
+            border: 1px solid rgba(226, 232, 240, 0.8); 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .contact-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04); 
+            border-color: #cbd5e1;
+        }
+
+        .card-title { 
+            font-size: 15px; 
+            font-weight: 700; 
+            color: #0284c7; /* Насыщенный голубой цвет */
+        }
+
+        .card-value { 
+            font-size: 14px; 
+            font-weight: 500; 
+            color: #1e293b; 
+        }
+        .card-link {
+            font-size: 14px; 
+            font-weight: 500; 
+            color: #2563eb; /* Синий цвет для кликабельных ссылок */
+            transition: opacity 0.2s;
+        }
+        .card-link:hover { opacity: 0.7; }
+
+        .btn-back-container { width: 100%; text-align: center; margin-top: 40px; }
+        .btn-back {
+            display: inline-block; padding: 10px 24px; border-radius: 9999px;
+            border: 1px solid #f472b6; color: #f472b6; font-weight: 600; font-size: 14px; transition: all 0.2s;
+        }
+        .btn-back:hover { background-color: #f472b6; color: #ffffff; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-logo">Anatoly Alekseev</div>
+        <div class="nav-links">
+            <a href="index.html" style="color: #f472b6;">Home</a>
+            <a href="experience.html" style="color: #f472b6;">Experience</a>
+            <a href="projects.html" style="color: #f472b6;">Projects</a>
+            <a href="contact.html" style="color: #f472b6;">Contact</a>
+        </div>
+    </nav>
+
+    <!-- CENTERED SECTION TITLE -->
+    <header class="header">
+        <h1>Contact</h1>
+    </header>
+
+    <!-- TWO-COLUMN GRID OF CARDS -->
+    <main class="container">
+
+        <!-- Card 1: Email -->
+        <div class="contact-card">
+            <div class="card-title">Email</div>
+            <a href="mailto:alekseev19988@gmail.com" class="card-link">alekseev19988@gmail.com</a>
+        </div>
+
+        <!-- Card 2: Phone -->
+        <div class="contact-card">
+            <div class="card-title">Phone</div>
+            <div class="card-value">+7 (905) 321-5783</div>
+        </div>
+
+        <!-- Card 3: Location -->
+        <div class="contact-card">
+            <div class="card-title">Location</div>
+            <div class="card-value">Saratov, Russia</div>
+        </div>
+
+        <!-- Card 4: Telegram -->
+        <div class="contact-card">
+            <div class="card-title">Telegram</div>
+            <a href="t.me/AleksWhitee" target="_blank" class="card-link">t.me/AleksWhitee</a>
+        </div>
+
+        <!-- Card 5: GitHub -->
+        <div class="contact-card">
+            <div class="card-title">GitHub</div>
+            <a href="https://github.com/AleksWhite911" target="_blank" class="card-link">https://github.com/AleksWhite911</a>
+        </div>
+
+    </main>
+
+    <!-- BACK TO HOME BUTTON -->
+    <div class="btn-back-container">
+        <a href="index.html" class="btn-back">← Back to Portfolio</a>
+    </div>
+
+</body>
+</html>
